@@ -1,0 +1,24 @@
+#!/bin/bash
+#Network Dump
+
+#Traceroute and Tracepath
+
+echo "Enter a domain to hop to:"
+read domain_name
+echo "Enter a name for stored hop txt file:"
+echo "Do not use an existing file name. Feature WIP."
+read stored_hop 
+echo "---Date of Creation---" >> /etc/NetworkManager/HopDump/$stored_hop.txt
+date >> /etc/NetworkManager/HopDump/$stored_hop.txt
+echo "Running..."
+
+
+echo " ---TRACEROUTE--- DOMAIN HOPPED: $domain_name" >> /etc/NetworkManager/HopDump/$stored_hop.txt
+echo >> /etc/NetworkManager/HopDump/$stored_hop.txt
+traceroute $domain_name >> /etc/NetworkManager/HopDump/$stored_hop.txt 
+echo >> /etc/NetworkManager/HopDump/$stored_hop.txt
+echo  "---TRACEPATH--- " >> /etc/NetworkManager/HopDump/$stored_hop.txt
+echo >> /etc/NetworkManager/HopDump/$stored_hop.txt
+tracepath $domain_name >> /etc/NetworkManager/HopDump/$stored_hop.txt
+
+echo "$stored_hop has been created! This file was stored in /etc/NetworkManager/HopDump/"

@@ -1,0 +1,23 @@
+#!/bin/bash 
+#Jacob Valenti
+#Basic nslookup up combined with PortCheck Save
+
+
+echo "Name the file you want to save to"
+read  file_choice
+
+echo "---Date---" >> /etc/NetworkManager/DNSPortCheckSaves/$file_choice.txt
+date >> /etc/NetworkManager/DNSPortCheckSaves/$file_choice.txt
+
+echo "Type in a Domain you would like to look up:"
+read domain_Lookup
+
+echo "---Domain Lookup---" >> /etc/NetworkManager/DNSPortCheckSaves/$file_choice.txt
+
+nslookup $domain_Lookup >> /etc/NetworkManager/DNSPortCheckSaves/$file_choice.txt
+
+
+echo "---NetStat PortCheck---" >>  /etc/NetworkManager/DNSPortCheckSaves/$file_choice.txt 
+netstat >> /etc/NetworkManager/DNSPortCheckSaves/$file_choice.txt
+
+echo "$file_choice created! This file was stored in /etc/NetworkManager/DNSPortDumpSaves/"
